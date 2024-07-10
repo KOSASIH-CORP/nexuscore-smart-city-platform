@@ -1,0 +1,16 @@
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+import numpy as np
+
+class DeepQNetwork(nn.Module):
+    def __init__(self, state_dim, action_dim, hidden_dim):
+        super(DeepQNetwork, self).__init__()
+        self.fc1 = nn.Linear(state_dim, hidden_dim)
+        self.fc2 = nn.Linear(hidden_dim, hidden_dim)
+        self.fc3 = nn.Linear(hidden_dim, actionpsilon_greedy_action(self, state, epsilon):
+        if np.random.uniform(0, 1) < epsilon:
+            return np.random.randint(0, self.fc3.out_features)
+        else:
+            q_values = self.forward(torch.tensor(state, dtype=torch.float32))
+            return torch.argmax(q_values).item()
