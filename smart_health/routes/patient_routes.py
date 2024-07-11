@@ -15,3 +15,11 @@ def train_patient_model():
     data = request.get_json()
     patient_model.train(data['X'], data['y'])
     return jsonify({'message': 'Model trained successfully'})
+
+@patient_blueprint.route('/patient/evaluate', methods=['POST'])
+def evaluate_patient_model():
+    patient_model = PatientModel()
+    data = request.get_json()
+    X, y = data['X'], data['y']
+    score = patient_model.evaluate(X, y)
+    return jsonify({'score': score})
