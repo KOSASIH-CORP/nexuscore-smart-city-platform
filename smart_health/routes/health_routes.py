@@ -15,3 +15,11 @@ def train_health_model():
     data = request.get_json()
     health_model.train(data['X'], data['y'])
     return jsonify({'message': 'Model trained successfully'})
+
+@health_blueprint.route('/health/evaluate', methods=['POST'])
+def evaluate_health_model():
+    health_model = HealthModel()
+    data = request.get_json()
+    X, y = data['X'], data['y']
+    score = health_model.evaluate(X, y)
+    return jsonify({'score': score})
